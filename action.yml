@@ -1,13 +1,17 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'swift-check-runner'
+description: 'Check if macOS self-hosted runner is ready'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
-    required: true
-    default: '1000'
+  check-screen-is-unlocked:
+    description: 'Check if screen is unlocked'
+    required: false
+    default: false
+  should-cancel:
+    description: 'Cancel workflow instead of failing'
+    required: false
+    default: true
 outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  reasons:
+    description: 'Failing checks'
 runs:
   using: 'node12'
   main: 'dist/index.js'
