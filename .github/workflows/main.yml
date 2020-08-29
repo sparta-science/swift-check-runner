@@ -18,6 +18,6 @@ jobs:
       NSUnbufferedIO: YES
 
     steps:
-    - uses: paulz/swift-check-runner@master
+    - uses: paulz/swift-check-runner@v1.1
       with:
         checkScreenIsUnlocked: true
