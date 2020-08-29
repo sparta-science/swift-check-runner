@@ -6,20 +6,17 @@ require('./sourcemap-register.js');module.exports =
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 const core = __webpack_require__(186);
-const wait = __webpack_require__(258);
 
-
-// most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+    const checkScreen = core.getInput('checkScreenIsUnlocked');
+    core.info(`Should check if screen is locked: ${checkScreen} ...`);
 
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
+    if (checkScreen === 'true') {
+      core.info(`Should check if screen is locked!`);
+    }
 
-    core.setOutput('time', new Date().toTimeString());
+    core.setOutput('reasons', 'testing');
   } catch (error) {
     core.setFailed(error.message);
   }
@@ -355,23 +352,6 @@ function getState(name) {
 }
 exports.getState = getState;
 //# sourceMappingURL=core.js.map
-
-/***/ }),
-
-/***/ 258:
-/***/ ((module) => {
-
-let wait = function (milliseconds) {
-  return new Promise((resolve) => {
-    if (typeof milliseconds !== 'number') {
-      throw new Error('milliseconds not a number');
-    }
-    setTimeout(() => resolve("done!"), milliseconds)
-  });
-};
-
-module.exports = wait;
-
 
 /***/ }),
 
