@@ -1,0 +1,23 @@
+name: self-hosted-test
+
+on:
+  push:
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+  build-then-test:
+
+    runs-on: self-hosted
+    timeout-minutes: 20
+
+    env:
+      DEVELOPER_DIR: /Applications/Xcode.app/Contents/Developer
+      NSUnbufferedIO: YES
+
+    steps:
+      uses: paulz/swift-check-runner@master
+        with:
+          checkScreenIsUnlocked: true
