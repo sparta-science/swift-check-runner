@@ -1,14 +1,14 @@
 name: 'swift-check-runner'
 description: 'Check if macOS self-hosted runner is ready'
 inputs:
-  check-screen-is-unlocked:
+  checkScreenIsUnlocked:
     description: 'Check if screen is unlocked'
     required: false
-    default: false
-  should-cancel:
+    default: 'false'
+  shouldCancel:
     description: 'Cancel workflow instead of failing'
     required: false
-    default: true
+    default: 'true'
 outputs:
   reasons:
     description: 'Failing checks'
